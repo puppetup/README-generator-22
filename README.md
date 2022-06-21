@@ -49,4 +49,4 @@ Please ensure that you include the name of this project ("ReadMe Generator") in 
 - [My Github Profile](github.com/puppetup)
 
 ## Screenshot of Deployed Application
-![Screenshot of Application](./assets/images/screenshot.png)
+![Screenshot of Application](./assets/images/screen.gif)
