@@ -1,5 +1,15 @@
 const inquirer = require('inquirer');
-const fs = rquire('fs');
-const fileGenerator = 
+const fs = require('fs');
+const fileGenerator = ('./fileGenerator')
 
-    inquirer
+inquirer
+    .prompt([
+
+    ])
+    .then((data) => {
+        const filename = `${data.name.toLowerCase().split(' ').join('')}readme.json`
+
+        fs.writeFile(filename, JSON.stringify(data), (err) =>
+        err ? console.log(err) : console.log('Success!')
+        );
+    });
