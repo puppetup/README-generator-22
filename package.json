@@ -17,6 +17,6 @@
   },
   "homepage": "https://github.com/puppetup/README-generator-22#readme",
   "dependencies": {
-    "inquirer": "^9.0.0"
+    "inquirer": "^6.5.2"
   }
 }
