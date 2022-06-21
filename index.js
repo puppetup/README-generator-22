@@ -1,8 +1,8 @@
 const inquirer = require('inquirer');
 const fs = require('fs');
 
-const generateMarkdown = ({title, description, username , name, year, email, license, path, installation, usage, credits, contribution}) {
-
+const generateMarkdown = ({title, description, username , name, year, email, license, path, installation, usage, credits, contribution, tests}) {
+     
 `# ${title}
 
 ## Description
@@ -41,40 +41,23 @@ ${credits}
 
 ${contribution}
 
+## Tests
+
+${tests}
+
 ## Questions
 
 For any questions pertaining to this project, the developer can be reached via any of the contact methods listed below. 
 Please ensure that you include the name of this project ("${title}") in any communications. 
 
-- ${email}
+- Email me: ${email}
+- [My Github Profile](github.com/${username})
 
 ## Screenshot of Deployed Application
 ![Screenshot of Application](${path})`
-}
+};
 
-const licenses = [
-    'MIT License',
-    'GNU GPLv3',
-    'GNU AGPLv3',
-    'GNU LGPLv3',
-    'Mozilla Public License 2.0',
-    'Apache License 2.0',
-    'Boost Software License 1.0',
-    'The Unlicense',
-];
-
-const licenseLink = {
-    'MIT License': 'https://opensource.org/licenses/MIT',
-    'GNU GPLv3': 'https://www.gnu.org/licenses/gpl-3.0',
-    'GNU AGPLv3': 'https://www.gnu.org/licenses/agpl-3.0',
-    'GNU LGPLv3': 'https://www.gnu.org/licenses/lgpl-3.0',
-    'Mozilla Public License 2.0': 'https://opensource.org/licenses/MPL-2.0',
-    'Apache License 2.0': 'https://opensource.org/licenses/Apache-2.0',
-    'Boost Software License 1.0': 'https://www.boost.org/LICENSE_1_0.txt',
-    'The Unlicense': 'http://unlicense.org/'
-  };
-
-const badges = {
+const licenses = {
     'MIT License': '[![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)]',
     'GNU GPLv3': '[![License: GPL v3](https://img.shields.io/badge/License-GPLv3-blue.svg)]',
     'GNU AGPLv3': '[![License: AGPL v3](https://img.shields.io/badge/License-AGPL%20v3-blue.svg)]',
@@ -150,6 +133,11 @@ inquirer
             name: 'contirbution',
             message: 'Please enter instructions on how to contribute to your project',
         },
+        {
+            type: 'input',
+            name: 'tests',
+            message: 'Please enter instructions on how to run tests for your project',
+        },
     ])
     .then((data) => {
         const readmeContent = generateMarkdown(data);
@@ -158,11 +146,3 @@ inquirer
         err ? console.log(err) : console.log('Success!!!')
         )
     });
-
-    
-
-       // const filename = `${data.title.toLowerCase().split(' ').join('')}readme.json`
-
-        // fs.writeFile(filename, JSON.stringify(data, null,'\t'), (err) =>
-        // err ? console.log(err) : console.log('Success!')
-        // );
