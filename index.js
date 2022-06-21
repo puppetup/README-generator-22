@@ -1,12 +1,13 @@
 const inquirer = require('inquirer');
 const fs = require('fs');
 
-const generateMarkdown = ({title, description, username , name, year, email, license, path, installation, usage, credits, contribution}) =>
-`# ${answers.title}
+const generateMarkdown = ({title, description, username , name, year, email, license, path, installation, usage, credits, contribution}) {
+
+`# ${title}
 
 ## Description
 
-${answers.description}
+${description}
  
 ## Table of Contents
 
@@ -20,32 +21,36 @@ ${answers.description}
 
 ## Installation
 
-${answers.installation}
+${installation}
 
 ## Usage
 
-${answers.usage}
+${usage}
 
 ## License
 
-${answers.license}
-Copyright (c) ${answers.year} ${answers.name}
-License details can be found [here](${licenseLink[selectedLicense]})
+${license}
+Copyright (c) ${year} ${name}
+
+
 ## Credits 
-${answers.credits}
+
+${credits}
 
 ## Contributing
 
-${answers.contribution}
+${contribution}
 
 ## Questions
 
 For any questions pertaining to this project, the developer can be reached via any of the contact methods listed below. 
-Please ensure that you include the name of this project ("${answers.title}") in any communications. 
-- ${github}
+Please ensure that you include the name of this project ("${title}") in any communications. 
+
 - ${email}
+
 ## Screenshot of Deployed Application
-![Screenshot of Application](${answers.path})`
+![Screenshot of Application](${path})`
+}
 
 const licenses = [
     'MIT License',
@@ -58,6 +63,18 @@ const licenses = [
     'The Unlicense',
 ];
 
+const licenseLink = {
+    'MIT License': 'https://opensource.org/licenses/MIT',
+    'GNU GPLv3': 'https://www.gnu.org/licenses/gpl-3.0',
+    'GNU AGPLv3': 'https://www.gnu.org/licenses/agpl-3.0',
+    'GNU LGPLv3': 'https://www.gnu.org/licenses/lgpl-3.0',
+    'Mozilla Public License 2.0': 'https://opensource.org/licenses/MPL-2.0',
+    'Apache License 2.0': 'https://opensource.org/licenses/Apache-2.0',
+    'Boost Software License 1.0': 'https://www.boost.org/LICENSE_1_0.txt',
+    'The Unlicense': 'http://unlicense.org/'
+  };
+
+  
 inquirer
     .prompt([
         {
@@ -92,7 +109,6 @@ inquirer
         },
         {
             type: 'list',
-            loop: false,
             name: 'license',
             message: 'Please select a license from the list',
             choices: licenses,
