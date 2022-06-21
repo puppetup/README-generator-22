@@ -1,8 +1,8 @@
-# a
+# ReadMe Generator
 
 ## Description
 
-a
+Generates a readme.md file using command line prompts.
  
 ## Table of Contents
 
@@ -16,32 +16,37 @@ a
 
 ## Installation
 
-a
+clone repo onto machine and ensure inquirer is installed
 
 ## Usage
 
-a
+run node in index.js and answer prompts
 
 ## License
 
-MIT License
-Copyright (c) a a
+MIT License [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
+Copyright (c) 2022 Savino Hoshizaki
 
 
 ## Credits 
 
-a
+Myself
 
 ## Contributing
 
 undefined
 
+## Tests
+
+n/a
+
 ## Questions
 
 For any questions pertaining to this project, the developer can be reached via any of the contact methods listed below. 
-Please ensure that you include the name of this project ("a") in any communications. 
+Please ensure that you include the name of this project ("ReadMe Generator") in any communications. 
 
-- a
+- Email me: savinohoshizaki@gmail.com
+- [My Github Profile](github.com/puppetup)
 
 ## Screenshot of Deployed Application
 ![Screenshot of Application](./assets/images/screenshot.png)

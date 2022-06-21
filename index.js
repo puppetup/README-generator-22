@@ -1,7 +1,7 @@
 const inquirer = require('inquirer');
 const fs = require('fs');
 
-const generateMarkdown = ({title, description, username , name, year, email, license, path, installation, usage, credits, contribution, tests}) {
+const generateMarkdown = ({title, description, username , name, year, email, license, path, installation, usage, credits, contribution, tests}) =>
      
 `# ${title}
 
@@ -29,7 +29,7 @@ ${usage}
 
 ## License
 
-${license}
+${license} ${createBadge(license)}
 Copyright (c) ${year} ${name}
 
 
@@ -55,20 +55,27 @@ Please ensure that you include the name of this project ("${title}") in any comm
 
 ## Screenshot of Deployed Application
 ![Screenshot of Application](${path})`
-};
+;
 
-const licenses = {
-    'MIT License': '[![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)]',
-    'GNU GPLv3': '[![License: GPL v3](https://img.shields.io/badge/License-GPLv3-blue.svg)]',
-    'GNU AGPLv3': '[![License: AGPL v3](https://img.shields.io/badge/License-AGPL%20v3-blue.svg)]',
-    'GNU LGPLv3': '[![License: LGPL v3](https://img.shields.io/badge/License-LGPL%20v3-blue.svg)]',
-    'Mozilla Public License 2.0': '[![License: MPL 2.0](https://img.shields.io/badge/License-MPL%202.0-brightgreen.svg)]',
-    'Apache License 2.0': '[![License: Apache 2.0](https://img.shields.io/badge/License-Apache%202.0-blue.svg)]',
-    'Boost Software License 1.0': '[![License: Boost Software License 1.0](https://img.shields.io/badge/License-Boost%201.0-lightblue.svg)]',
-    'The Unlicense': '[![License: Unlicense](https://img.shields.io/badge/license-Unlicense-blue.svg)]'
-  };
-  
-  
+function createBadge(badgeName) {
+    let badge;
+    if (badgeName === 'MIT License') {
+        badge = `[![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)`
+    } else if (badgeName === 'GNU GPLv3') {
+        badge = `[![License: GPL v3](https://img.shields.io/badge/License-GPL%20v3-blue.svg)](https://www.gnu.org/licenses/gpl-3.0)`
+    } else {
+        badge = `[![License: MPL 2.0](https://img.shields.io/badge/License-MPL%202.0-brightgreen.svg)](https://opensource.org/licenses/MPL-2.0)`
+    }
+    return badge
+}
+
+const licenses = [
+    'MIT License',
+    'GNU GPLv3',
+    'Mozilla Public License 2.0',
+];
+
+
 inquirer
     .prompt([
         {
