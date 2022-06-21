@@ -1,6 +1,51 @@
 const inquirer = require('inquirer');
 const fs = require('fs');
-const generateMarkdown = require('./generateMarkdown.js');
+
+const generateMarkdown = ({title, description, username , name, year, email, license, path, installation, usage, credits, contribution}) =>
+`# ${answers.title}
+
+## Description
+
+${answers.description}
+ 
+## Table of Contents
+
+- [Installation](#installation)
+- [Usage](#usage)
+- [License](#license)
+- [Credits](#credits)
+- [Contributing](#contributing)
+- [Tests](#tests)
+- [Questions](#questions)
+
+## Installation
+
+${answers.installation}
+
+## Usage
+
+${answers.usage}
+
+## License
+
+${answers.license}
+Copyright (c) ${answers.year} ${answers.name}
+License details can be found [here](${licenseLink[selectedLicense]})
+## Credits 
+${answers.credits}
+
+## Contributing
+
+${answers.contribution}
+
+## Questions
+
+For any questions pertaining to this project, the developer can be reached via any of the contact methods listed below. 
+Please ensure that you include the name of this project ("${answers.title}") in any communications. 
+- ${github}
+- ${email}
+## Screenshot of Deployed Application
+![Screenshot of Application](${answers.path})`
 
 const licenses = [
     'MIT License',
@@ -80,11 +125,17 @@ inquirer
         },
     ])
     .then((data) => {
-        const filename = `${data.title.toLowerCase().split(' ').join('')}readme.json`
+        const readmeContent = generateMarkdown(data);
 
-        fs.writeFile(filename, JSON.stringify(data, null,'\t'), (err) =>
-        err ? console.log(err) : console.log('Success!')
-        );
+        fs.writeFile('readme.md', readmeContent, (err) =>
+        err ? console.log(err) : console.log('Success!!!')
+        )
     });
 
-    generateMarkdown
+    
+
+       // const filename = `${data.title.toLowerCase().split(' ').join('')}readme.json`
+
+        // fs.writeFile(filename, JSON.stringify(data, null,'\t'), (err) =>
+        // err ? console.log(err) : console.log('Success!')
+        // );
